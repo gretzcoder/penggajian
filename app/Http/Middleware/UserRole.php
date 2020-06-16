@@ -18,7 +18,7 @@ class UserRole
         if (auth()->user()->id != 1) {
             return $next($request);
         } else {
-            return redirect('hr/dashboard');
+            return redirect('admin/dashboard');
         }
     }
 }

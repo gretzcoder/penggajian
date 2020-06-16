@@ -9,4 +9,9 @@ class Position extends Model
     protected $guarded = [];
 
     public $timestamps = false;
+
+    public function users()
+    {
+        return $this->hasMany('App\Employee');
+    }
 }

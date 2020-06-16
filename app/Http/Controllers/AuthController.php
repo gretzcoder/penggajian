@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,10 +21,13 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        $remember_token = ($request->has('remember_token')) ? true : false;
+        $is_active = User::where('nip', $request->nip)->first()->is_active;
 
-        if (Auth::attempt($request->only('nip', 'password'), $remember_token)) {
-            return redirect()->intended('hr/dashboard');
+        $remember_token = ($request->has('remember_token')) ? true : false;
+        if (!$is_active) {
+            return redirect()->back()->withInput()->withErrors(['blocked' => 'Akses di blokir oleh administrator',]);
+        } elseif (Auth::attempt($request->only('nip', 'password'), $remember_token)) {
+            return redirect()->intended('admin/dashboard');
         }
 
         return redirect()->back()->withInput()->withErrors(['password' => 'Wrong Password.',]);

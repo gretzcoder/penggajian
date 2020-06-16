@@ -11,14 +11,7 @@
 
     <title>@yield('title')</title>
 
-    <!-- Custom fonts for this template-->
-    <link href="{{ URL::asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="{{ URL::asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    @yield('head-link')
 
 </head>
 
@@ -39,8 +32,8 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+            <li class="nav-item {{ (request()->is('admin/dashboard*')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('admin/dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -49,46 +42,43 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+            <li class="nav-item {{ (request()->is('admin/akun*')) ? 'active' : '' }}">
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-user"></i>
                     <span> Akun</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Input Akun Baru</a>
-                        <a class="collapse-item" href="cards.html">Kelola Akun</a>
+                        <a class="collapse-item" href="{{ url('admin/akun/input-akun') }}">Input Akun Baru</a>
+                        <a class="collapse-item" href="{{ url('admin/akun/kelola-akun') }}">Kelola Akun</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
+            <li class="nav-item {{ (request()->is('admin/data-karyawan*')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('admin/data-karyawan') }}">
+                    <i class="fas fa-fw fa-user-tie"></i>
+                    <span>Data Karyawan</span></a>
+            </li>
+
+            <li class="nav-item {{ (request()->is('admin/jabatan*')) ? 'active' : '' }}">
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#jabatan"
+                    aria-expanded="true" aria-controls="jabatan">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Jabatan</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
+                <div id="jabatan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                        <a class="collapse-item" href="{{ url('admin/jabatan/input-jabatan') }}">Input Jabatan Baru</a>
+                        <a class="collapse-item" href="{{ url('admin/jabatan/kelola-jabatan') }}">Kelola Jabatan</a>
                     </div>
                 </div>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -235,22 +225,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ URL::asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ URL::asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{ URL::asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{ URL::asset('js/sb-admin-2.min.js') }}"></script>
-
-    <!-- Page level plugins -->
-    <script src="{{ URL::asset('vendor/chart.js/Chart.min.js') }}"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="{{ URL::asset('js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ URL::asset('js/demo/chart-pie-demo.js') }}"></script>
+    @yield('foot-link')
 
 </body>
 

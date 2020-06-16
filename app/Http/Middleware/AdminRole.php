@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class HrRole
+class AdminRole
 {
     /**
      * Handle an incoming request.

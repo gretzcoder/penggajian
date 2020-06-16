@@ -13,12 +13,7 @@ class PositionSeeder extends Seeder
     public function run()
     {
         Position::updateOrCreate([
-            'position' => 'Human Resource',
-            'salary' => 4500000,
-            'job_allowance' => 750000
-        ]);
-
-        Position::updateOrCreate([
+            'id' => 2,
             'position' => 'Staff',
             'salary' => 4000000,
             'job_allowance' => 500000

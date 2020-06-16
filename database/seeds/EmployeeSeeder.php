@@ -13,24 +13,26 @@ class EmployeeSeeder extends Seeder
     public function run()
     {
         Employee::updateOrCreate([
+            'id' => 2,
             'full_name' => 'M. Iqbal Alifudin',
             'address' => '20-23 Kamiyamachō Shibuya City Tōkyō-to 150-0047 Jepang',
             'phone' => '08123456789',
             'marital_status' => 0,
             'number_of_children' => 0,
             'profile_pic' => 'default.png',
-            'user_id' => 1,
-            'position_id' => 1
+            'user_id' => 2,
+            'position_id' => 2
         ]);
 
         Employee::updateOrCreate([
+            'id' => 3,
             'full_name' => 'Ahmad Nurul Fiqri',
             'address' => 'Meikarta, Indonesia',
             'phone' => '08912345678',
             'marital_status' => 1,
             'number_of_children' => 3,
             'profile_pic' => 'default.png',
-            'user_id' => 2,
+            'user_id' => 3,
             'position_id' => 2
         ]);
     }

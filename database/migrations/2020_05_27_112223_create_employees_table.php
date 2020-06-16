@@ -16,11 +16,11 @@ class CreateEmployeesTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->string('full_name', 50);
-            $table->string('address');
-            $table->string('phone', 13);
-            $table->boolean('marital_status');
-            $table->integer('number_of_children');
-            $table->string('profile_pic');
+            $table->string('address')->nullable();
+            $table->string('phone', 13)->nullable();
+            $table->boolean('marital_status')->nullable();
+            $table->integer('number_of_children')->nullable();
+            $table->string('profile_pic')->nullable();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('position_id')->constrained('positions');
             $table->timestamps();

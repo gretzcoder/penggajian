@@ -34,6 +34,12 @@
                 <div class="p-5">
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                    @error('blocked')
+                    <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button> 
+                        {{ $message }}
+                    </div>
+                    @enderror
                   </div>
                   <form class="user" action="/login" method="post">
                     @csrf
@@ -87,6 +93,12 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
+
+  <script>
+    $(function(){
+        $(".alert").delay(3000).slideUp(300);
+    });
+</script>
 
 </body>
 

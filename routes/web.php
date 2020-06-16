@@ -20,17 +20,29 @@ Route::get('/login', 'AuthController@getLogin')->name('login')->middleware('gues
 Route::post('/login', 'AuthController@postLogin');
 Route::get('/logout', 'AuthController@logout');
 
-// Human Resource Routes
-Route::middleware(['auth', 'hr'])->group(function () {
-    Route::get('hr/dashboard', function () {
-        return view('hr/dashboard');
+// Admin Routes
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('admin/dashboard', function () {
+        return view('admin/dashboard');
     });
-    Route::get('hr/kelola-akun', 'UserController@index');
+
+    Route::get('admin/akun/kelola-akun', 'UserController@index');
+    Route::get('admin/akun/input-akun', 'UserController@create');
+    Route::get('admin/akun/{employee}', 'EmployeeController@show');
+    Route::post('admin/akun/input-akun', 'UserController@store');
+    Route::patch('admin/akun/{id}', 'EmployeeController@updatePasswordFromAdmin');
+    Route::delete('admin/akun/{id}', 'UserController@destroy');
+
+    Route::get('admin/data-karyawan', 'EmployeeController@index');
+    Route::get('admin/data-karyawan/{employee}', 'EmployeeController@show');
+    Route::get('admin/data-karyawan/{employee}/edit', 'EmployeeController@editAdmin');
+    Route::patch('admin/data-karyawan/{id}', 'EmployeeController@updateProfileFromAdmin');
 });
 
 // Users Routes
 Route::middleware(['auth', 'user'])->group(function () {
-    Route::get('profile', function () {
-        return view('user/profile');
-    });
+    Route::get('profile', 'EmployeeController@profile');
+    Route::get('profile/edit', 'EmployeeController@editUser');
+    Route::patch('profile/update-password', 'EmployeeController@updatePassword');
+    Route::patch('profile/update-profile', 'EmployeeController@updateProfile');
 });
