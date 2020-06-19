@@ -15,7 +15,7 @@ class CreatePositionsTable extends Migration
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
-            $table->string('position', 20);
+            $table->string('position', 50);
             $table->integer('salary');
             $table->integer('job_allowance');
         });

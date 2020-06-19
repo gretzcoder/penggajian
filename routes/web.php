@@ -37,6 +37,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('admin/data-karyawan/{employee}', 'EmployeeController@show');
     Route::get('admin/data-karyawan/{employee}/edit', 'EmployeeController@editAdmin');
     Route::patch('admin/data-karyawan/{id}', 'EmployeeController@updateProfileFromAdmin');
+
+    Route::get('admin/jabatan', 'PositionController@index');
+    Route::get('admin/jabatan/input-jabatan', 'PositionController@create');
+    Route::get('admin/jabatan/{position}', 'PositionController@show');
+    Route::patch('admin/jabatan/{position}/edit', 'PositionController@update');
+    Route::patch('admin/jabatan/{employee}', 'EmployeeController@updateJabatan');
+    Route::post('admin/jabatan/input-jabatan', 'PositionController@store');
+    Route::delete('admin/jabatan/{position}', 'PositionController@destroy');
 });
 
 // Users Routes

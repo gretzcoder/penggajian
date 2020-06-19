@@ -72,7 +72,7 @@
                 <div id="jabatan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ url('admin/jabatan/input-jabatan') }}">Input Jabatan Baru</a>
-                        <a class="collapse-item" href="{{ url('admin/jabatan/kelola-jabatan') }}">Kelola Jabatan</a>
+                        <a class="collapse-item" href="{{ url('admin/jabatan') }}">Daftar Jabatan</a>
                     </div>
                 </div>
             </li>

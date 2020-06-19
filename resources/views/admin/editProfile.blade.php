@@ -108,7 +108,7 @@
                                 </div>
                               </div>
                               <div class="form-group row">
-                                <label for="position" class="col-4 col-form-label">Posisi</label> 
+                                <label for="position" class="col-4 col-form-label">Jabatan</label> 
                                 <div class="col-8">
                                     <select class="form-control @error('posisi') is-invalid @enderror" id="position" name="posisi">
                                         <option selected value="{{ $employee->position->id }}">{{ $employee->position->position }}</option>
@@ -212,12 +212,6 @@
     
         <!-- Custom scripts for all pages-->
         <script src="{{ URL::asset('js/sb-admin-2.min.js') }}"></script>
-
-        <script>
-            $('.profile-img').hover(function () {
-                $('.profile-img .btn').toggleClass('display');
-            })
-        </script>
 
         <script>
           $(function(){

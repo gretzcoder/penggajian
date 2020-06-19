@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Data Karyawan')
+@section('title', 'Kelola Jabatan')
 
 @section('head-link')
     <!-- Custom fonts for this template-->
@@ -12,12 +12,6 @@
 
     <!-- Custom styles for this page -->
     <link href="{{ URL::asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-
-    <style>
-        .table > tbody > tr > td {
-            vertical-align: middle;
-        }
-    </style>
 @endsection
 
 @section('content')
@@ -25,69 +19,69 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Data Karyawan CakeCode</h1>
-        <p class="mb-4">Seluruh data karyawan yang ada di Database Aplikasi Penggajian CakeCode</p>
-        @if (session()->has('deleted'))
+        <h1 class="h3 mb-2 text-gray-800">Data Jabatan CakeCode</h1>
+        <p class="mb-4">Seluruh data jabatan yang ada di Database Aplikasi Penggajian CakeCode</p>
+        @if (session()->has('jabatan_update'))
         <div class="alert alert-info alert-block">
             <button type="button" class="close" data-dismiss="alert">×</button> 
-            {{ session()->get('deleted') }}
+            {{ session()->get('jabatan_update') }}
         </div>
         @endif
-        @if (session()->has('akun_store'))
+        @if (session()->has('jabatan_store'))
         <div class="alert alert-success alert-block">
             <button type="button" class="close" data-dismiss="alert">×</button> 
-            {{ session()->get('akun_store') }}
+            {{ session()->get('jabatan_store') }}
+        </div>
+        @endif
+        @if (session()->has('deleted'))
+        <div class="alert alert-success alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button> 
+            {{ session()->get('deleted') }}
         </div>
         @endif
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataKaryawan" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTablePosition" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                    <th>Foto</th>
-                    <th>Nip</th>
-                    <th>Nama Lengkap</th>
                     <th>Jabatan</th>
-                    <th>Alamat</th>
-                    <th>No. Telp</th>
+                    <th>Gaji Pokok</th>
+                    <th>Tunjangan</th>
+                    <th>Total Pegawai</th>
                     <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @php($employees = \App\Employee::all())
-                    @foreach ($employees as $employee)
-                    <tr>
-                        <td class="text-center"><img src="{{ URL::asset('img/employeePic/'.$employee->profile_pic) }}" alt="{{ $employee->full_name }}" width="100" class="img-thumbnail"></td>
-                        <a href="#"><td>{{ $employee->user->nip }}</td></a>
-                        <td>{{ $employee->full_name }}</td>
-                        <td>{{ $employee->position->position }}</td>
-                        <td>{{ $employee->address }}</td>
-                        <td>{{ $employee->phone }}</td>
+                    @foreach ($positions as $position)
+                    <a href=""><tr>
+                        <td>{{ $position->position }}</td>
+                        <td>Rp. {{ number_format($position->salary,0,'','.') }}</td>
+                        <td>Rp. {{ number_format($position->job_allowance,0,'','.') }}</td>
+                        <td>{{ count($position->employees) }}</td>
                         <td class="text-center">
-                            <a class="btn btn-info btn-sm" style="width: 65px;" href="{{ url('admin/data-karyawan/'.$employee->id) }}" role="button">Lihat</a>
-                            <a class="btn btn-warning btn-sm my-1" style="width: 65px;" href="{{ url('admin/data-karyawan/'.$employee->id.'/edit') }}" role="button">Edit</a>
-                            <button type="button" class="btn btn-danger btn-sm d-inline" style="width: 65px;" data-toggle="modal" data-target="#exampleModalCenter{{ $employee->user->id }}">Hapus</button>
+                            <a class="btn btn-info btn-sm mx-1" style="width: 60px;" href="{{ url('admin/jabatan/'.$position->id) }}" role="button">Kelola</a>
+                            {{-- <button type="button" class="btn btn-danger btn-sm d-inline" style="width: 60px;" data-toggle="modal" data-target="#exampleModalCenter{{ $position->id }}">Hapus</button> --}}
                         </td>
-                    </tr>
+                    </tr></a>
 
-                        {{-- Delete Modal --}}
-                        <div class="modal fade" id="exampleModalCenter{{ $employee->user->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        {{-- Delete Modal
+                        <div class="modal fade" id="exampleModalCenter{{ $position->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Yakin ingin menghapus akun ?</h5>
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Yakin ingin menghapus jabatan ?</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                Seluruh data akun akan dihapus secara permanen dan tidak dapat dikembalikan.
+                                Seluruh data jabatan akan dihapus secara permanen dan tidak dapat dikembalikan.
                                 </div>
                                 <div class="modal-footer p-0 px-3">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <form method="POST" action="{{ url('/admin/akun/'.$employee->user->id) }}">
+                                <form method="POST" action="{{ url('/admin/jabatan/'.$position->id) }}" class="m-0 p-0">
                                     @csrf
                                     @method('delete')
                                     <div class="form-group">
@@ -97,7 +91,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     @endforeach
                 </tbody>
                 </table>
@@ -128,6 +122,8 @@
     <script src="{{ URL::asset('js/demo/datatables-demo.js') }}"></script>
 
     <script>
+        
+
         $(function(){
             $(".alert").delay(3000).slideUp(300);
         });

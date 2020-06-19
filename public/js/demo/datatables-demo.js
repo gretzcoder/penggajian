@@ -30,6 +30,30 @@ $(document).ready(function () {
             },
         ]
     });
+    $('#dataTablePosition').DataTable({
+        "columns": [{
+            "width": "35%"
+        }, {
+            "width": "20%"
+        }, {
+            "width": "20%"
+        }, {
+            "width": "15%"
+        }, {
+            "width": "10%"
+        }, ]
+    });
+    $('#dataPositionPegawai').DataTable({
+        "columns": [{
+            "width": "20%"
+        }, {
+            "width": "40%"
+        }, {
+            "width": "40%"
+        }, ]
+    });
+
+
 
 
 });

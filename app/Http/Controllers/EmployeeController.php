@@ -168,4 +168,19 @@ class EmployeeController extends Controller
         session()->flash('password_update', 'Password berhasil dirubah.');
         return redirect()->back();
     }
+
+    public function updateJabatan(Request $request, Employee $employee)
+    {
+        $request->validate([
+            'posisi' => 'required|exists:positions,id'
+        ]);
+
+        Employee::where('id', $employee->id)
+            ->update([
+                'position_id' => $request->posisi,
+            ]);
+
+        session()->flash('pegawai_update', 'Berhasil dirubah.');
+        return redirect()->back();
+    }
 }

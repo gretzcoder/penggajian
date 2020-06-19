@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Position extends Model
 {
-    protected $guarded = [];
+    protected $fillable = ['position', 'salary', 'job_allowance'];
 
     public $timestamps = false;
 
-    public function users()
+    public function employees()
     {
         return $this->hasMany('App\Employee');
     }
