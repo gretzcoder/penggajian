@@ -53,7 +53,26 @@ $(document).ready(function () {
         }, ]
     });
 
+    $('#dataTableAbsensi').DataTable({
+        "pageLength": 50,
+        "aaSorting": [
+            [1, 'asc']
+        ]
+    });
 
-
-
+    $('#dataTableAbsensiUser').DataTable({
+        "pageLength": 50,
+        "aaSorting": [
+            [1, 'desc']
+        ],
+        "columns": [{
+            "width": "25%"
+        }, {
+            "width": "25%"
+        }, {
+            "width": "25%"
+        }, {
+            "width": "25%"
+        }, ]
+    });
 });

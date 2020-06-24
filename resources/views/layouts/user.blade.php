@@ -36,20 +36,20 @@
                     <span>Profile</span></a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
+            <li class="nav-item {{ (request()->is('presensi*')) ? 'active' : '' }}">
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#presensi"
+                    aria-expanded="true" aria-controls="Presensi">
+                    <i class="fas fa-fw fa-calendar-check"></i>
+                    <span>Presensi</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="presensi" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <a class="collapse-item" href="{{ url('presensi') }}">Presensi</a>
+                        <a class="collapse-item" href="{{ url('presensi/rekap-presensi') }}">Rekap Presensi</a>
                     </div>
                 </div>
             </li>
+
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
@@ -99,11 +99,11 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Charts -->
+            <!-- Nav Item - Komplaint -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
+                <a class="nav-link" href="{{ url('komplain') }}">
+                    <i class="fas fa-fw fa-envelope"></i>
+                    <span>Komplain</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
@@ -199,7 +199,7 @@
                             <div class="nav-link">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->employee->full_name }}</span>
                                 <img class="img-profile rounded-circle"
-                                    src="{{ URL::asset('img/employeePic/'.auth()->user()->employee->profile_pic) }}">
+                                    src="{{ URL::asset('img/employeePic/'.auth()->user()->employee->profile_pic) }}" onerror="this.onerror=null;this.src='{{ URL::asset('img/employeePic/default.png') }}';">
                             </div>
                         </li>
 

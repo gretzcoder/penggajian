@@ -140,8 +140,9 @@
                                 </div>
                               </div>
                               <div class="form-group row">
-                                <label for="text" class="col-4 col-form-label">Foto</label> 
-                                <div class="col-8">
+                                <label for="inputGroupFile01" class="col-4 col-form-label">Foto</label> 
+                                <div class="col-8 d-flex">
+                                  <img id="blah" src="{{ asset('img/employeePic/'.$employee->profile_pic) }}" class="img-thumbnail mr-2" alt="your image" height="60" width="60"/>
                                   <div class="custom-file">
                                     <input type="file" class="custom-file-input @error('image') is-invalid @enderror" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="image">
                                     @error('image')
@@ -198,5 +199,21 @@
               //replace the "Choose a file" label
               $(this).next('.custom-file-label').html(cleanFileName);
           })
+
+          function readURL(input) {
+            if (input.files && input.files[0]) {
+              var reader = new FileReader();
+              
+              reader.onload = function(e) {
+                $('#blah').attr('src', e.target.result);
+              }
+              
+              reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+          }
+
+          $("#inputGroupFile01").change(function() {
+            readURL(this);
+          });
         </script>
 @endsection

@@ -17,4 +17,9 @@ class Employee extends Model
     {
         return $this->belongsTo('App\Position');
     }
+
+    public function presences()
+    {
+        return $this->hasMany('App\Presence');
+    }
 }

@@ -45,6 +45,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::patch('admin/jabatan/{employee}', 'EmployeeController@updateJabatan');
     Route::post('admin/jabatan/input-jabatan', 'PositionController@store');
     Route::delete('admin/jabatan/{position}', 'PositionController@destroy');
+
+    Route::get('admin/presensi', 'PresenceController@index');
+    Route::post('admin/presensi', 'PresenceController@indexSearch');
+    Route::post('admin/presensi/edit', 'PresenceController@edit');
+    Route::patch('admin/presensi/edit/{presence}', 'PresenceController@update');
 });
 
 // Users Routes
@@ -53,4 +58,12 @@ Route::middleware(['auth', 'user'])->group(function () {
     Route::get('profile/edit', 'EmployeeController@editUser');
     Route::patch('profile/update-password', 'EmployeeController@updatePassword');
     Route::patch('profile/update-profile', 'EmployeeController@updateProfile');
+
+    Route::get('presensi', 'PresenceController@indexUser');
+    Route::post('presensi', 'PresenceController@postPresensi');
+    Route::get('presensi/rekap-presensi', 'PresenceController@rekapPresensi');
+    Route::post('presensi/rekap-presensi', 'PresenceController@rekapPresensiSearch');
+
+    Route::get('komplain', 'ComplaintController@indexUser');
+    Route::post('komplain', 'ComplaintController@postKomplainUser');
 });

@@ -2,6 +2,7 @@
 
 use App\Employee;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeSeeder extends Seeder
 {
@@ -12,6 +13,8 @@ class EmployeeSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('employees')->delete();
+
         Employee::updateOrCreate([
             'id' => 2,
             'full_name' => 'M. Iqbal Alifudin',
@@ -21,7 +24,7 @@ class EmployeeSeeder extends Seeder
             'number_of_children' => 0,
             'profile_pic' => 'default.png',
             'user_id' => 2,
-            'position_id' => 2
+            'position_id' => 3
         ]);
 
         Employee::updateOrCreate([

@@ -39,7 +39,7 @@
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item {{ (request()->is('admin/akun*')) ? 'active' : '' }}">
@@ -56,6 +56,9 @@
                 </div>
             </li>
 
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item {{ (request()->is('admin/data-karyawan*')) ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('admin/data-karyawan') }}">
@@ -63,10 +66,13 @@
                     <span>Data Karyawan</span></a>
             </li>
 
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
             <li class="nav-item {{ (request()->is('admin/jabatan*')) ? 'active' : '' }}">
                 <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#jabatan"
                     aria-expanded="true" aria-controls="jabatan">
-                    <i class="fas fa-fw fa-user"></i>
+                    <i class="fas fa-fw fa-briefcase"></i>
                     <span>Jabatan</span>
                 </a>
                 <div id="jabatan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -75,6 +81,15 @@
                         <a class="collapse-item" href="{{ url('admin/jabatan') }}">Daftar Jabatan</a>
                     </div>
                 </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item {{ (request()->is('admin/presensi*')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('admin/presensi') }}">
+                    <i class="fas fa-fw fa-calendar-check"></i>
+                    <span>Presensi</span></a>
             </li>
 
             <!-- Divider -->
@@ -104,8 +119,8 @@
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
+                    <i class="fas fa-fw fa-envelope"></i>
+                    <span>Komplain</span></a>
             </li>
 
             <!-- Nav Item - Tables -->

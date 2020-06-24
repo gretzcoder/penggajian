@@ -2,6 +2,7 @@
 
 use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -12,10 +13,14 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+
+        DB::table('users')->delete();
+
+
         User::updateOrCreate([
             'id' => 1,
             'nip' => 'cakecode',
-            'password' => bcrypt('rahasia'),
+            'password' => bcrypt('00000000'),
             'is_active' => 1
         ]);
 

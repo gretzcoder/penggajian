@@ -15,8 +15,9 @@ class CreatePresencesTable extends Migration
     {
         Schema::create('presences', function (Blueprint $table) {
             $table->id();
+            $table->dateTime('datetime')->nullable();
             $table->foreignId('employee_id')->constrained('employees')->cascadeOnDelete();
-            $table->enum('status', ['h', 'a']);
+            $table->enum('status', ['h', 'a', 't']);
             $table->timestamps();
         });
     }
