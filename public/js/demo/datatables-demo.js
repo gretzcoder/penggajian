@@ -14,6 +14,9 @@ $(document).ready(function () {
         }, ]
     });
     $('#dataKaryawan').DataTable({
+        "aaSorting": [
+            [1, 'asc']
+        ],
         "columns": [{
                 "width": "10%"
             }, {
@@ -73,6 +76,26 @@ $(document).ready(function () {
             "width": "25%"
         }, {
             "width": "25%"
+        }, ]
+    });
+
+    $('#dataComplaint').DataTable({
+        "pageLength": 50,
+        "aaSorting": [
+            [4, 'desc']
+        ],
+        "columns": [{
+            "width": "8%"
+        }, {
+            "width": "18%"
+        }, {
+            "width": "12%"
+        }, {
+            "width": "40%"
+        }, {
+            "width": "12%"
+        }, {
+            "width": "10%"
         }, ]
     });
 });

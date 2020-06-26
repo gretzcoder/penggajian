@@ -15,10 +15,10 @@ class CreateResponsesTable extends Migration
     {
         Schema::create('responses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('employee_id')->constrained('employees')->cascadeOnDelete();
             $table->foreignId('complaint_id')->constrained('complaints');
-            $table->string('subject', 50);
+            $table->string('subject', 150);
             $table->text('response');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

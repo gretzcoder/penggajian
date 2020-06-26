@@ -59,7 +59,7 @@
                     @php($employees = \App\Employee::all())
                     @foreach ($employees as $employee)
                     <tr>
-                        <td class="text-center"><img src="{{ URL::asset('img/employeePic/'.$employee->profile_pic) }}" alt="{{ $employee->full_name }}" width="100" class="img-thumbnail"></td>
+                        <td class="text-center"><img src="{{ URL::asset('img/employeePic/'.$employee->profile_pic) }}" alt="{{ $employee->full_name }}" width="100" class="img-thumbnail" onerror="this.onerror=null;this.src='{{ URL::asset('img/employeePic/default.png') }}';"></td>
                         <a href="#"><td>{{ $employee->user->nip }}</td></a>
                         <td>{{ $employee->full_name }}</td>
                         <td>{{ $employee->position->position }}</td>

@@ -50,6 +50,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('admin/presensi', 'PresenceController@indexSearch');
     Route::post('admin/presensi/edit', 'PresenceController@edit');
     Route::patch('admin/presensi/edit/{presence}', 'PresenceController@update');
+
+    Route::get('admin/komplain', 'ComplaintController@indexAdmin');
+    Route::get('admin/komplain/{complaint}/respon', 'ResponseController@show');
+    Route::post('admin/respon/{complaint}', 'ResponseController@store');
 });
 
 // Users Routes
@@ -66,4 +70,5 @@ Route::middleware(['auth', 'user'])->group(function () {
 
     Route::get('komplain', 'ComplaintController@indexUser');
     Route::post('komplain', 'ComplaintController@postKomplainUser');
+    Route::get('komplain/{complaint}', 'ComplaintController@show');
 });

@@ -22,4 +22,9 @@ class Employee extends Model
     {
         return $this->hasMany('App\Presence');
     }
+
+    public function complaints()
+    {
+        return $this->hasMany('App\Complaint');
+    }
 }

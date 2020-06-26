@@ -69,7 +69,7 @@
                 <div class="row">
                         <div class="col-md-4">
                             <div class="profile-img">
-                                <img src="{{ URL::asset('img/employeePic/'.$employee->profile_pic) }}" alt=""/>
+                                <img src="{{ URL::asset('img/employeePic/'.$employee->profile_pic) }}" alt="" onerror="this.onerror=null;this.src='{{ URL::asset('img/employeePic/default.png') }}';"/>
                             </div>
                         </div>
                         <div class="col-md-6">

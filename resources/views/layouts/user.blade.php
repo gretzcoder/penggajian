@@ -100,7 +100,7 @@
             </li>
 
             <!-- Nav Item - Komplaint -->
-            <li class="nav-item">
+            <li class="nav-item {{ (request()->is('komplain*')) ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('komplain') }}">
                     <i class="fas fa-fw fa-envelope"></i>
                     <span>Komplain</span></a>

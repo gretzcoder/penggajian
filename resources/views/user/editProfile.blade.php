@@ -142,7 +142,7 @@
                               <div class="form-group row">
                                 <label for="inputGroupFile01" class="col-4 col-form-label">Foto</label> 
                                 <div class="col-8 d-flex">
-                                  <img id="blah" src="{{ asset('img/employeePic/'.$employee->profile_pic) }}" class="img-thumbnail mr-2" alt="your image" height="60" width="60"/>
+                                  <img id="blah" src="{{ asset('img/employeePic/'.$employee->profile_pic) }}" class="img-thumbnail mr-2" alt="your image" height="60" width="60" onerror="this.onerror=null;this.src='{{ URL::asset('img/employeePic/default.png') }}';"/>
                                   <div class="custom-file">
                                     <input type="file" class="custom-file-input @error('image') is-invalid @enderror" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="image">
                                     @error('image')
@@ -178,12 +178,6 @@
     
         <!-- Custom scripts for all pages-->
         <script src="{{ URL::asset('js/sb-admin-2.min.js') }}"></script>
-
-        <script>
-            $('.profile-img').hover(function () {
-                $('.profile-img .btn').toggleClass('display');
-            })
-        </script>
 
         <script>
           $(function(){

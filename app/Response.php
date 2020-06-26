@@ -6,5 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Response extends Model
 {
-    protected $fillable = ['employee_id', 'complaint_id', 'subject', 'response'];
+    protected $fillable = ['status', 'complaint_id', 'subject', 'response'];
+
+    public function complaint()
+    {
+        return $this->hasOne('App\Complaint');
+    }
+
+    public function response_images()
+    {
+        return $this->hasMany('App\ResponseImage');
+    }
 }

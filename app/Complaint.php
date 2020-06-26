@@ -8,8 +8,18 @@ class Complaint extends Model
 {
     protected $fillable = ['employee_id', 'subject', 'body'];
 
-    public function complain_images()
+    public function employee()
     {
-        return $this->hasMany('App/ComplaintImage');
+        return $this->belongsTo('App\Employee');
+    }
+
+    public function complaint_images()
+    {
+        return $this->hasMany('App\ComplaintImage');
+    }
+
+    public function response()
+    {
+        return $this->hasOne('App\Response');
     }
 }

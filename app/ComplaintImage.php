@@ -10,6 +10,6 @@ class ComplaintImage extends Model
 
     public function Complaint()
     {
-        return $this->belongsTo('App/Complaint');
+        return $this->belongsTo('App\Complaint');
     }
 }

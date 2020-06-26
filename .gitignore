@@ -1,8 +1,9 @@
 /node_modules
 /public/hot
 /public/storage
-/public/img/employeePic*!default.png
-!/public/img/employeePic/default.png
+/public/img/employeePic
+/public/img/complaintImg
+/public/img/responseImg
 /storage/*.key
 /vendor
 .env

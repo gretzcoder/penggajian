@@ -17,12 +17,12 @@ class PresenceController extends Controller
         $last = Carbon::parse(Presence::latest('id')->first()->datetime)->format('Y-m-d');
         $min = Carbon::parse(Presence::get()->first()->datetime)->format('Y-m-d');
         $max = Carbon::parse(Presence::latest('id')->first()->datetime)->format('Y-m-d');
-        $presences = Presence::where('created_at', '>', $max)->get();
+        $presences = Presence::where('created_at', '>=', $max)->get();
 
         if (session()->has('first')) {
             $first = session()->get('first');
             $last = session()->get('last');
-            $presences = Presence::where('created_at', '<=', $last)->where('created_at', '>=', $first)->get();
+            $presences = Presence::where('created_at', '<', $last)->where('created_at', '>=', $first)->get();
         }
 
         return view('admin/presensi', compact('first', 'last', 'min', 'max', 'presences'));
