@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('title', 'Kelola '.$employee->full_name)
+@section('title', 'Komplain ')
 
 @section('head-link')
 <!-- Custom fonts for this template-->

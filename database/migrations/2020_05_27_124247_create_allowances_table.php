@@ -15,8 +15,10 @@ class CreateAllowancesTable extends Migration
     {
         Schema::create('allowances', function (Blueprint $table) {
             $table->id();
-            $table->integer('tunjangan_makan');
-            $table->integer('tunjangan_transportasi');
+            $table->string('name', 100);
+            $table->string('formula');
+            $table->string('condition')->nullable();
+            $table->enum('type', ['potongan', 'penambahan']);
         });
     }
 

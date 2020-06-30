@@ -13,7 +13,7 @@ class EmployeeSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('employees')->delete();
+        $z = Carbon\Carbon::now()->subMonth()->endOfMonth();
 
         Employee::updateOrCreate([
             'id' => 2,
@@ -24,7 +24,8 @@ class EmployeeSeeder extends Seeder
             'number_of_children' => 0,
             'profile_pic' => 'default.png',
             'user_id' => 2,
-            'position_id' => 3
+            'position_id' => 3,
+            'created_at' => $z
         ]);
 
         Employee::updateOrCreate([
@@ -36,7 +37,8 @@ class EmployeeSeeder extends Seeder
             'number_of_children' => 3,
             'profile_pic' => 'default.png',
             'user_id' => 3,
-            'position_id' => 2
+            'position_id' => 2,
+            'created_at' => $z
         ]);
     }
 }

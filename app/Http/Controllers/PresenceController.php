@@ -22,7 +22,7 @@ class PresenceController extends Controller
         if (session()->has('first')) {
             $first = session()->get('first');
             $last = session()->get('last');
-            $presences = Presence::where('created_at', '<', $last)->where('created_at', '>=', $first)->get();
+            $presences = Presence::where('created_at', '<', Carbon::parse($last)->addDay())->where('created_at', '>=', $first)->get();
         }
 
         return view('admin/presensi', compact('first', 'last', 'min', 'max', 'presences'));
@@ -73,8 +73,17 @@ class PresenceController extends Controller
 
     public function postPresensi()
     {
-        if (!is_null(Presence::where('employee_id', auth()->user()->employee->id)->latest('id')->first())) {
-            if (Carbon::parse(Presence::where('employee_id', auth()->user()->employee->id)->latest('id')->first()->created_at)->toDateString() != Carbon::now()->toDateString()) {
+        if (Carbon::now()->isWeekday()) {
+            if (!is_null(Presence::where('employee_id', auth()->user()->employee->id)->latest('id')->first())) {
+                if (Carbon::parse(Presence::where('employee_id', auth()->user()->employee->id)->latest('id')->first()->created_at)->toDateString() != Carbon::now()->toDateString()) {
+                    $d = Carbon::now();
+                    Presence::create([
+                        'datetime' => $d->toTimeString() <= '08:00:00' || $d->toTimeString() >= '10:00:00'  ? null : $d->toDatetimeString(),
+                        'employee_id' => auth()->user()->employee->id,
+                        'status' => ($d->toTimeString() >= '08:00:00' && $d->toTimeString() <= '09:00:00'  ? 'h' : ($d->toTimeString() >= '09:00:00' && $d->toTimeString() <= '10:00:00' ? 't' : 'a')),
+                    ]);
+                }
+            } else {
                 $d = Carbon::now();
                 Presence::create([
                     'datetime' => $d->toTimeString() <= '08:00:00' || $d->toTimeString() >= '10:00:00'  ? null : $d->toDatetimeString(),
@@ -82,13 +91,6 @@ class PresenceController extends Controller
                     'status' => ($d->toTimeString() >= '08:00:00' && $d->toTimeString() <= '09:00:00'  ? 'h' : ($d->toTimeString() >= '09:00:00' && $d->toTimeString() <= '10:00:00' ? 't' : 'a')),
                 ]);
             }
-        } else {
-            $d = Carbon::now();
-            Presence::create([
-                'datetime' => $d->toTimeString() <= '08:00:00' || $d->toTimeString() >= '10:00:00'  ? null : $d->toDatetimeString(),
-                'employee_id' => auth()->user()->employee->id,
-                'status' => ($d->toTimeString() >= '08:00:00' && $d->toTimeString() <= '09:00:00'  ? 'h' : ($d->toTimeString() >= '09:00:00' && $d->toTimeString() <= '10:00:00' ? 't' : 'a')),
-            ]);
         }
         return redirect('presensi');
     }

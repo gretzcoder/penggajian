@@ -16,15 +16,10 @@ class CreatePayrollHistoriesTable extends Migration
         Schema::create('payroll_histories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained('employees');
-            $table->foreignId('allowance_id')->constrained('allowances');
             $table->integer('gaji_pokok');
-            $table->integer('insentif_kehadiran');
-            $table->integer('tunjangan_jabatan');
-            $table->integer('tunjangan_makan');
-            $table->integer('tunjangan_transportasi');
-            $table->integer('tunjangan_istri');
-            $table->integer('tunjangan_anak');
-            $table->integer('pph21');
+            $table->integer('penambahan');
+            $table->integer('potongan');
+            $table->integer('gaji_bersih');
             $table->timestamps();
         });
     }

@@ -27,4 +27,8 @@ class Employee extends Model
     {
         return $this->hasMany('App\Complaint');
     }
+    public function payrollHistories()
+    {
+        return $this->hasMany('App\PayrollHistory');
+    }
 }

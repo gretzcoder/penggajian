@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('title', auth()->user()->employee->full_name)
+@section('title', 'Presensi Karyawan CakeCode')
 
 @section('head-link')
 <!-- Custom fonts for this template-->
@@ -33,18 +33,18 @@
                     @else
                     <form action="{{ url('presensi') }}" method="post">
                         @csrf
-                        @if (Carbon\Carbon::now()->toTimeString() <= '10:00:00' && '09:00:00' <=Carbon\Carbon::now()->
-                            toTimeString())
-                            <button type="submit" class="btn btn-sm btn-warning rounded-pill font-weight-bold"
-                                style="width: 240px; height: 56px; font-size: 32px;">TERLAMBAT</button>
-                            @elseif(Carbon\Carbon::now()->toTimeString() >= '10:00:00' || '08:00:00' >=
-                            Carbon\Carbon::now()->toTimeString())
-                            <button class="btn btn-sm btn-secondary rounded-pill font-weight-bold"
-                                style="width: 360px; height: 56px; font-size: 32px;" disabled>DILUAR JAM MASUK</button>
-                            @else
-                            <button type="submit" class="btn btn-sm btn-primary rounded-pill font-weight-bold"
-                                style="width: 240px; height: 56px; font-size: 32px;">ABSEN</button>
-                            @endif
+                        @if (Carbon\Carbon::now()->toTimeString() > '10:00:00' || '08:00:00' > Carbon\Carbon::now()->
+                        toTimeString() || !Carbon\Carbon::now()->isWeekDay())
+                        <button class="btn btn-sm btn-secondary rounded-pill font-weight-bold"
+                            style="width: 360px; height: 56px; font-size: 32px;" disabled>DILUAR JAM MASUK</button>
+                        @elseif(Carbon\Carbon::now()->toTimeString() >= '09:00:00' && '10:00:00' >=
+                        Carbon\Carbon::now()->toTimeString() && Carbon\Carbon::now()->isWeekDay())
+                        <button type="submit" class="btn btn-sm btn-warning rounded-pill font-weight-bold"
+                            style="width: 240px; height: 56px; font-size: 32px;">TERLAMBAT</button>
+                        @else
+                        <button type="submit" class="btn btn-sm btn-primary rounded-pill font-weight-bold"
+                            style="width: 240px; height: 56px; font-size: 32px;">ABSEN</button>
+                        @endif
                     </form>
                     @endif
                 </div>

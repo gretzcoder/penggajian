@@ -52,52 +52,15 @@
 
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item {{ (request()->is('penggajian*')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('penggajian') }}">
+                    <i class="fas fa-fw fa-money-bill"></i>
+                    <span>Penggajian</span></a>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
+            <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Komplaint -->
             <li class="nav-item {{ (request()->is('komplain*')) ? 'active' : '' }}">
@@ -159,7 +122,7 @@
                                         <div class="icon-circle bg-primary">
                                             <i class="fas fa-file-alt text-white"></i>
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div>
                                         <div class="small text-gray-500">December 12, 2019</div>
                                         <span class="font-weight-bold">A new monthly report is ready to download!</span>
@@ -197,9 +160,11 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item">
                             <div class="nav-link">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->employee->full_name }}</span>
+                                <span
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->employee->full_name }}</span>
                                 <img class="img-profile rounded-circle"
-                                    src="{{ URL::asset('img/employeePic/'.auth()->user()->employee->profile_pic) }}" onerror="this.onerror=null;this.src='{{ URL::asset('img/employeePic/default.png') }}';">
+                                    src="{{ URL::asset('img/employeePic/'.auth()->user()->employee->profile_pic) }}"
+                                    onerror="this.onerror=null;this.src='{{ URL::asset('img/employeePic/default.png') }}';">
                             </div>
                         </li>
 

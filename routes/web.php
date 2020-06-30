@@ -22,9 +22,7 @@ Route::get('/logout', 'AuthController@logout');
 
 // Admin Routes
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('admin/dashboard', function () {
-        return view('admin/dashboard');
-    });
+    Route::get('admin/dashboard', 'EmployeeController@dashboard');
 
     Route::get('admin/akun/kelola-akun', 'UserController@index');
     Route::get('admin/akun/input-akun', 'UserController@create');
@@ -54,6 +52,19 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('admin/komplain', 'ComplaintController@indexAdmin');
     Route::get('admin/komplain/{complaint}/respon', 'ResponseController@show');
     Route::post('admin/respon/{complaint}', 'ResponseController@store');
+
+    Route::get('admin/penambahan-potongan', 'AllowanceController@index');
+    Route::post('admin/penambahan', 'AllowanceController@storePenambahan');
+    Route::delete('admin/penambahan-potongan/{allowance}', 'AllowanceController@destroy');
+    Route::post('admin/potongan', 'AllowanceController@storePotongan');
+    Route::patch('admin/potongan/{allowance}', 'AllowanceController@patchPotongan');
+    Route::patch('admin/penambahan/{allowance}', 'AllowanceController@patchPenambahan');
+
+    Route::get('admin/penggajian', 'PayrollHistoryController@index');
+    Route::post('admin/penggajian', 'PayrollHistoryController@indexPost');
+    Route::post('admin/post/penggajian/{employee}', 'PayrollHistoryController@store');
+
+    Route::post('printPdf/{employee}/{month}/{year}/', 'PayrollHistoryController@printPDF');
 });
 
 // Users Routes
@@ -71,4 +82,9 @@ Route::middleware(['auth', 'user'])->group(function () {
     Route::get('komplain', 'ComplaintController@indexUser');
     Route::post('komplain', 'ComplaintController@postKomplainUser');
     Route::get('komplain/{complaint}', 'ComplaintController@show');
+
+    Route::get('penggajian', 'PayrollHistoryController@indexUser');
+    Route::post('penggajian', 'PayrollHistoryController@indexPostUser');
+
+    Route::post('printPdf/{employee}/{month}/{year}/employee', 'PayrollHistoryController@printPDF');
 });

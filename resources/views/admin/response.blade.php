@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Data Karyawan')
+@section('title', 'Respon '.$complaint->subject)
 
 @section('head-link')
 <!-- Custom fonts for this template-->

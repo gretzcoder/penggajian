@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Data Karyawan')
+@section('title', 'Komplain Karyawan CakeCode')
 
 @section('head-link')
 <!-- Custom fonts for this template-->
@@ -14,6 +14,7 @@
 
 <!-- Custom styles for this page -->
 <link href="{{ URL::asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+<link href="{{ URL::asset('vendor/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet">
 
 @endsection
 
@@ -86,6 +87,14 @@
 <!-- Page level plugins -->
 <script src="{{ URL::asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ URL::asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ URL::asset('vendor/datatables/dataTables.buttons.min.js') }}"></script>
+<script src="{{ URL::asset('vendor/datatables/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ URL::asset('vendor/datatables/jszip.min.js') }}"></script>
+<script src="{{ URL::asset('vendor/datatables/pdfmake.min.js') }}"></script>
+<script src="{{ URL::asset('vendor/datatables/vfs_fonts.js') }}"></script>
+<script src="{{ URL::asset('vendor/datatables/buttons.html5.min.js') }}"></script>
+<script src="{{ URL::asset('vendor/datatables/buttons.print.min.js') }}"></script>
+<script src="{{ URL::asset('vendor/datatables/buttons.colVis.min.js') }}"></script>
 
 <!-- Page level custom scripts -->
 <script src="{{ URL::asset('js/demo/datatables-demo.js') }}"></script>
