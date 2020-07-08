@@ -275,6 +275,14 @@
                             </div>
                         </tr>
                         @else
+                        @php
+                        $c = App\PayrollHistory::where('employee_id',
+                        $e->id)->latest('created_at')->first();
+                        @endphp
+                        @if(empty($c))
+
+                        @elseif(Carbon\Carbon::parse($c->created_at)->month ==
+                        Carbon\Carbon::now()->month)
                         <tr>
                             <td>{{ $e->user->nip }}</td>
                             <td>{{ $e->full_name }}</td>
@@ -494,6 +502,7 @@
                                 </div>
                             </div>
                         </tr>
+                        @endif
                         @endif
                         @endforeach
                     </tbody>

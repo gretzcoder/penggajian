@@ -522,12 +522,12 @@
                     c : Jumlah Anak |
                     h : Kehadiran <br>
                     t : Keterlambatan |
-                    t : Ketidakhadiran <br><br>
+                    a : Ketidakhadiran <br><br>
 
                     == : sama dengan |
                     != : tidak sama dengan <br>
-                    <= : lebih kecil dari sama dengan | >= : lebih besar dari sama dengan <br>
-                    < : lebih kecil dari | > : lebih besar dari | &&: dan | || : atau
+                    <= : lebih kecil dari sama dengan |>= : lebih besar dari sama dengan <br>
+                        < : lebih kecil dari |> : lebih besar dari | &&: dan | || : atau
                 </div>
             </div>
             <div class="modal-footer">

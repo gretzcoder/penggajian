@@ -290,12 +290,41 @@
                                 <button title="Info Gaji" type="button" class="btn btn-info btn-sm" style="width: 50px;"
                                     data-toggle="modal" data-target=".bd-example-modal-lg{{ $e->id }}"><i
                                         class="fas fa-info-circle fa-lg"></i></button>
-                                <form action="{{ url('printPdf/'.$e->id.'/'.$postMonth.'/'.$postYear)}}" method="POST"
-                                    class="d-inline">
+                                @php
+                                $c = App\PayrollHistory::where('employee_id', $e->id)->latest('created_at')->first();
+                                @endphp
+                                @if(empty($c))
+                                <form action="{{ url('admin/post/penggajian/'.$e->id)}}" method="POST" class="d-inline">
                                     @csrf
-                                    <button type="submit" class="btn btn-primary btn-sm" style="width: 50px;"
-                                        title="Download Slip"><i class="fas fa-file-download fa-lg"></i></button>
+                                    <input type="hidden" name="gapok" value={{ $e->position->salary }}>
+                                    <input type="hidden" name="penambahan"
+                                        value={{ $hasilPenambahan[$row]+$e->position->job_allowance }}>
+                                    <input type="hidden" name="potongan" value={{ $hasilPotongan[$row] }}>
+                                    <input type="hidden" name="bersih"
+                                        value={{ $e->position->salary+$e->position->job_allowance+$hasilPenambahan[$row]-$hasilPotongan[$row] }}>
+                                    <button type="submit" class="btn btn-primary btn-sm mt-1" style="width: 50px;"
+                                        value="submit" title="Kirim Slip"><i
+                                            class="fas fa-paper-plane fa-lg"></i></button>
                                 </form>
+                                @else
+                                @if (Carbon\Carbon::parse($c->created_at)->month != Carbon\Carbon::now()->month)
+                                <form action="{{ url('admin/post/penggajian/'.$e->id)}}" method="POST" class="d-inline">
+                                    @csrf
+                                    <input type="hidden" name="gapok" value={{ $e->position->salary }}>
+                                    <input type="hidden" name="penambahan"
+                                        value={{ $hasilPenambahan[$row]+$e->position->job_allowance }}>
+                                    <input type="hidden" name="potongan" value={{ $hasilPotongan[$row] }}>
+                                    <input type="hidden" name="bersih"
+                                        value={{ $e->position->salary+$e->position->job_allowance+$hasilPenambahan[$row]-$hasilPotongan[$row] }}>
+                                    <button type="submit" class="btn btn-primary btn-sm mt-1" style="width: 50px;"
+                                        value="submit" title="Kirim Slip"><i
+                                            class="fas fa-paper-plane fa-lg"></i></button>
+                                </form>
+                                @else
+                                <button disabled type="submit" class="btn btn-primary btn-sm mt-1" style="width: 50px;"
+                                    value="submit" title="Kirim Slip"><i class="fas fa-paper-plane fa-lg"></i></button>
+                                @endif
+                                @endif
                             </td>
 
                             <!-- Large modal -->
@@ -486,6 +515,52 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
+                                            @php
+                                            $c = App\PayrollHistory::where('employee_id',
+                                            $e->id)->latest('created_at')->first();
+                                            @endphp
+                                            @if(empty($c))
+                                            <form action="{{ url('admin/post/penggajian/'.$e->id)}}" method="POST"
+                                                class="d-inline">
+                                                @csrf
+                                                <input type="hidden" name="gapok" value={{ $e->position->salary }}>
+                                                <input type="hidden" name="penambahan"
+                                                    value={{ $hasilPenambahan[$row]+$e->position->job_allowance }}>
+                                                <input type="hidden" name="potongan" value={{ $hasilPotongan[$row] }}>
+                                                <input type="hidden" name="bersih"
+                                                    value={{ $e->position->salary+$e->position->job_allowance+$hasilPenambahan[$row]-$hasilPotongan[$row] }}>
+                                                <button type="submit" class="btn btn-primary mr-0" style="width: 60px;"
+                                                    value="submit" title="Kirim Slip"><i
+                                                        class="fas fa-paper-plane fa-lg"></i></button>
+                                            </form>
+                                            @else
+                                            @if (Carbon\Carbon::parse($c->created_at)->month !=
+                                            Carbon\Carbon::now()->month)
+                                            <form action="{{ url('admin/post/penggajian/'.$e->id)}}" method="POST"
+                                                class="d-inline">
+                                                @csrf
+                                                <input type="hidden" name="gapok" value={{ $e->position->salary }}>
+                                                <input type="hidden" name="penambahan"
+                                                    value={{ $hasilPenambahan[$row]+$e->position->job_allowance }}>
+                                                <input type="hidden" name="potongan" value={{ $hasilPotongan[$row] }}>
+                                                <input type="hidden" name="bersih"
+                                                    value={{ $e->position->salary+$e->position->job_allowance+$hasilPenambahan[$row]-$hasilPotongan[$row] }}>
+                                                <button type="submit" class="btn btn-primary mr-0" style="width: 60px;"
+                                                    title="Kirim Slip"><i class="fas fa-paper-plane fa-lg"></i></button>
+                                            </form>
+                                            @else
+                                            <button disabled type="submit" class="btn btn-primary mr-0"
+                                                style="width: 60px;" value="submit" title="Kirim Slip"><i
+                                                    class="fas fa-paper-plane fa-lg"></i></button>
+                                            @endif
+                                            @endif
+                                            <form action="{{ url('printPdf/'.$e->id.'/'.$postMonth.'/'.$postYear)}}"
+                                                method="POST" class="d-inline">
+                                                @csrf
+                                                <button type="submit" class="btn btn-warning ml-0" style="width: 60px"
+                                                    title="Download Slip"><i
+                                                        class="fas fa-file-download fa-lg"></i></button>
+                                            </form>
                                             <button type="button" class="btn btn-secondary"
                                                 data-dismiss="modal">Close</button>
                                         </div>

@@ -74,161 +74,108 @@
 @section('content')
 <!-- Begin Page Content -->
 <div class="container emp-profile">
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="profile-img">
-                        <img src="{{ URL::asset('img/employeePic/'.$employee->profile_pic) }}" alt=""
-                            onerror="this.onerror=null;this.src='{{ URL::asset('img/employeePic/default.png') }}';" />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="profile-head">
-                        <h5>
-                            {{ $employee->full_name }}
-                        </h5>
-                        <h6>
-                            {{ $employee->position->position }}
-                        </h6>
-                        @if (session()->has('password_update'))
-                        <div class="alert alert-success alert-block">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
-                            {{ session()->get('password_update') }}
-                        </div>
-                        @endif
-                        @if (session()->has('profile_update'))
-                        <div class="alert alert-success alert-block">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
-                            {{ session()->get('profile_update') }}
-                        </div>
-                        @endif
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                    aria-controls="home" aria-selected="true">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                                    aria-controls="profile" aria-selected="false">Timeline</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="tab-content profile-tab" id="myTabContent">
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>NIP</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{ $employee->user->nip }}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Nama Lengkap</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{ $employee->full_name }}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Posisi</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{ $employee->position->position }}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Alamat</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{ $employee->address }}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>No. Telp</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{ $employee->phone }}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Status Pernikahan</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{ ($employee->marital_status) ? 'Kawin' : 'Belum Kawin' }}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Jumlah Anak</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{ $employee->number_of_children }}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Experience</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>Expert</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Hourly Rate</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>10$/hr</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Total Projects</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>230</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>English Level</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>Expert</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Availability</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>6 months</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>Your Bio</label><br />
-                                    <p>Your detail description</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <a href="{{ url('profile/edit') }}" class="profile-edit-btn btn btn-secondary">Edit Profile</a>
-                </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="profile-img">
+                <img src="{{ URL::asset('img/employeePic/'.$employee->profile_pic) }}" alt=""
+                    onerror="this.onerror=null;this.src='{{ URL::asset('img/employeePic/default.png') }}';" />
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="profile-head">
+                <h5>
+                    {{ $employee->full_name }}
+                </h5>
+                <h6>
+                    {{ $employee->position->position }}
+                </h6>
+                @if (session()->has('password_update'))
+                <div class="alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    {{ session()->get('password_update') }}
+                </div>
+                @endif
+                @if (session()->has('profile_update'))
+                <div class="alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    {{ session()->get('profile_update') }}
+                </div>
+                @endif
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                            aria-controls="home" aria-selected="true">About</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content profile-tab" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>NIP</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ $employee->user->nip }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Nama Lengkap</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ $employee->full_name }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Posisi</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ $employee->position->position }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Alamat</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ $employee->address }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>No. Telp</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ $employee->phone }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Status Pernikahan</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ ($employee->marital_status) ? 'Kawin' : 'Belum Kawin' }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Jumlah Anak</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ $employee->number_of_children }}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-2">
+            <a href="{{ url('profile/edit') }}" class="profile-edit-btn btn btn-secondary">Edit Profile</a>
+        </div>
     </div>
+</div>
+</div>
 </div>
 @endsection
 
@@ -414,16 +361,14 @@
                     </div>
             </form>
         </div>
-    </div>
-</div>
-<script type="text/javascript">
-    $(window).on('load',function(){
+        <script type="text/javascript">
+            $(window).on('load',function(){
                 $('#exampleModalCenter').modal({backdrop: 'static', keyboard: false});
                 $('#exampleModalCenter').modal('show');
             });
-</script>
-<script>
-    $('#inputGroupFile01').on('change',function(){
+        </script>
+        <script>
+            $('#inputGroupFile01').on('change',function(){
                 //get the file name
                 var fileName = $(this).val();
                 var cleanFileName = fileName.replace('C:\\fakepath\\', " ");
@@ -446,13 +391,13 @@
           $("#inputGroupFile01").change(function() {
             readURL(this);
           });
-</script>
-@endif
+        </script>
+        @endif
 
-<script>
-    $(function(){
+        <script>
+            $(function(){
                 $(".alert").delay(3000).slideUp(300);
             });
-</script>
+        </script>
 
-@endsection
+        @endsection

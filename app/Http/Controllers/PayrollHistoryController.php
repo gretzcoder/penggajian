@@ -259,7 +259,7 @@ class PayrollHistoryController extends Controller
                 return redirect('admin/penggajian');
             }
         }
-        if (Carbon::now()->endOfMonth()->diffInDays(Carbon::now()) >= 5) {
+        if (Carbon::now()->endOfMonth()->diffInDays(Carbon::now()) >= 7) {
             session()->flash('not_time', 'Belum Waktunya');
             return redirect('admin/penggajian');
         }
@@ -326,6 +326,7 @@ class PayrollHistoryController extends Controller
         $monthUnique = array_unique($month);
         $yearUnique = array_unique($year);
 
+
         return view('user/penggajian', compact('employees', 'monthUnique', 'yearUnique', 'firstMonth', 'lastMonth', 'postMonth', 'postYear', 'hasilPenambahan', 'hasilPotongan', 'potonganPerKaryawan', 'penambahanPerKaryawan', 'penambahan', 'potongan'));
     }
 
@@ -343,8 +344,8 @@ class PayrollHistoryController extends Controller
         $totalA = 0;
         $totalB = 0;
         foreach ($penambahan as $nambah) {
-            $hasilPenambahan[] = $nambah->hitungPenambahanPotongan($employee->id, $firstMonth, $lastMonth);
-            $totalA = $totalA + $nambah->hitungPenambahanPotongan($employee->id, $firstMonth, $lastMonth);
+            $hasilPenambahan[] = $nambah->hitungPenambahanPotongan($employee, $firstMonth, $lastMonth);
+            $totalA = $totalA + $nambah->hitungPenambahanPotongan($employee, $firstMonth, $lastMonth);
         }
         foreach ($potongan as $potong) {
             $hasilPotongan[] = $potong->hitungPenambahanPotongan($employee, $firstMonth, $lastMonth);
